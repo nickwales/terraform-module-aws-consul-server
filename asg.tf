@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "consul_server" {
-  name                      = "consul-server-${var.datacenter}"
+  name                      = "consul-server-${name}-${var.datacenter}"
   max_size                  = 3
   min_size                  = 1
   health_check_grace_period = 300
@@ -13,7 +13,7 @@ resource "aws_autoscaling_group" "consul_server" {
 
   tag {
     key                 = "Name"
-    value               = "consul-server-${var.datacenter}"
+    value               = "consul-server-${name}-${var.datacenter}"
     propagate_at_launch = true
   }
 }
