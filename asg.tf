@@ -25,18 +25,19 @@ resource "aws_launch_template" "consul_server" {
   iam_instance_profile {
     name = aws_iam_instance_profile.consul_server.name
   }
-  name = "consul-server-${var.datacenter}"
+  name = "consul-server-${var.name}-${var.datacenter}"
   tag_specifications {
     resource_type = "instance"
 
     tags = {
-      Name = "consul-server-${var.datacenter}",
-      role = "consul-server-${var.datacenter}",
+      Name = "consul-server-${var.name}-${var.datacenter}",
+      role = "consul-server-${var.name}-${var.datacenter}",
     }
   }  
   update_default_version = true
 
   user_data = base64encode(templatefile("${path.module}/templates/userdata.sh.tftpl", { 
+    name                  = var.name,
     datacenter            = var.datacenter, 
     consul_version        = var.consul_version,
     consul_token          = var.consul_token,
