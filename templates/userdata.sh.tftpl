@@ -49,12 +49,12 @@ datacenter = "${datacenter}"
 data_dir = "/opt/consul"
 log_level = "INFO"
 ports = {
-  http = -1
   grpc = 8502
   https = 8501
   grpc_tls = 8503
 }
 retry_join = ["provider=aws tag_key=role tag_value=consul-server-${name}-${datacenter}"]
+
 server = true
 telemetry {
   prometheus_retention_time = "10m"
@@ -89,8 +89,6 @@ EOT
 systemctl daemon-reload
 systemctl enable consul --now
 
-sleep 10 # Give consul a moment to start up
-
 ## Configure Consul DNS 
 mkdir -p /etc/systemd/resolved.conf.d/
 cat <<EOT > /etc/systemd/resolved.conf.d/consul.conf
@@ -101,7 +99,6 @@ Domains=~consul
 EOT
 
 systemctl restart systemd-resolved
-
 
 # Setup Consul environment variables (not for production use cases)
 export CONSUL_HTTP_TOKEN="${consul_token}"
