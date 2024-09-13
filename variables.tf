@@ -30,9 +30,16 @@ variable "datacenter" {
   default = "dc1"
 }
 
+variable "consul_acl_enabled" {
+  default = "true"
+}
+variable "consul_default_acl_policy" {
+  default = "deny"
+}
+
 variable "consul_server_count" {
   description = "The number of Consul servers, should be 1 or 3"
-  default = 1
+  default     = 1
 }
 
 variable "consul_encryption_key" {
@@ -45,6 +52,6 @@ variable "consul_agent_ca" {}
 
 variable "target_groups" {
   description = "List of target groups"
-  type    = list(string)
-  default = [""]
+  type        = list(string)
+  default     = [""]
 }

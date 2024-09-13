@@ -4,11 +4,11 @@ resource "aws_security_group" "consul_server_sg" {
   vpc_id      = var.vpc_id
 
   ingress {
-    description      = "Instance ingress"
-    from_port        = 0
-    to_port          = 0
-    protocol         = -1
-    cidr_blocks      = ["0.0.0.0/0"]
+    description = "Instance ingress"
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

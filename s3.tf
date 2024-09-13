@@ -4,5 +4,5 @@ resource "aws_s3_bucket" "consul-backup-bucket" {
 
   tags = {
     Name = "${var.name}-consul-backup"
-  }   
+  }
 }
