@@ -31,7 +31,7 @@ echo CONSUL_LICENSE=${consul_license} >> /etc/consul.d/consul.env
 
 cat <<EOT > /etc/consul.d/consul.hcl
 acl {
-  enabled = "${consul_acl_enabled}"
+  enabled = ${consul_acl_enabled}
   default_policy = "${consul_default_acl_policy}"
   enable_token_persistence = true
   tokens {
