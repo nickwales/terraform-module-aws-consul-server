@@ -18,6 +18,11 @@ resource "aws_iam_role" "consul_server" {
           Service = "ec2.amazonaws.com"
         }
       },
+      {
+        Action = "s3:DeleteObject"
+        Effect = "Deny"
+        Resource = ["arn:aws:s3:::my-bucket/*"]
+      },      
     ]
   })
 }
